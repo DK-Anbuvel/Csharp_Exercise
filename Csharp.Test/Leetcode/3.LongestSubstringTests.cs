@@ -1,15 +1,18 @@
-using Csharp_Exercise.Leetcode;
+using Csharp_Exercise;
 using Xunit;
 
 namespace Csharp.Test.Leetcode
 {
-    public class LongestSubstringTests
+    public class LongestSubstringTests2
     {
+        // Replace 'var solution = new Leetcode();' with the correct class instantiation.
+        // Assuming the class that implements LengthOfLongestSubstring is named '_3' as in the second test.
+
         [Fact]
         public void LengthOfLongestSubstring_ShouldReturnCorrectLength()
         {
             // Arrange
-            var solution = new _3();
+            var solution = new Csharp_Exercise.Leetcode2();
 
             // Act & Assert
             Assert.Equal(3, solution.LengthOfLongestSubstring("abcabcbb")); // "abc" is the longest substring
@@ -23,7 +26,7 @@ namespace Csharp.Test.Leetcode
         public void LengthOfLongestSubstring_ShouldHandleEdgeCases()
         {
             // Arrange
-            var solution = new _3();
+            var solution = new Csharp_Exercise.Leetcode2();
 
             // Act & Assert
             Assert.Equal(0, solution.LengthOfLongestSubstring(null));      // Null input
