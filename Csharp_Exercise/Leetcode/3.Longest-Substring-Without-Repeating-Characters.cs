@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Csharp_Exercise;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Csharp_Exercise
 {
-    public class Leetcode2 : Leetcode
+    public partial class Leecodes
     {
         public int LengthOfLongestSubstring(string s)  //3. Longest Substring Without Repeating Characters
         {

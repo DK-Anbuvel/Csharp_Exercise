@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Csharp_Exercise
 {
-	public class Leetcode
-	{
+	public partial class Leecodes
+    {
         public long MaxProfit(int[] prices, int[] strategy, int k) //Time Limit Exceeded (TLE) O(n^2) // O(n) --> prefix sum/Side window
         {
             prices = [4, 2, 8]; strategy = [-1, 0, 1]; k = 2;

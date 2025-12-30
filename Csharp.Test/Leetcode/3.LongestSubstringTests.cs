@@ -12,7 +12,7 @@ namespace Csharp.Test.Leetcode
         public void LengthOfLongestSubstring_ShouldReturnCorrectLength()
         {
             // Arrange
-            var solution = new Csharp_Exercise.Leetcode2();
+            var solution = new Csharp_Exercise.Leecodes();
 
             // Act & Assert
             Assert.Equal(3, solution.LengthOfLongestSubstring("abcabcbb")); // "abc" is the longest substring
@@ -26,7 +26,7 @@ namespace Csharp.Test.Leetcode
         public void LengthOfLongestSubstring_ShouldHandleEdgeCases()
         {
             // Arrange
-            var solution = new Csharp_Exercise.Leetcode2();
+            var solution = new Csharp_Exercise.Leecodes();
 
             // Act & Assert
             Assert.Equal(0, solution.LengthOfLongestSubstring(null));      // Null input
