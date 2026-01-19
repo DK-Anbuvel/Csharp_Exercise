@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Csharp_Exercise
+﻿namespace Csharp_Exercise
 {
     public partial class Leecodes
     {
@@ -19,7 +13,8 @@ namespace Csharp_Exercise
             try
             {
                 temp = Math.Abs(x); // case 1: 1,534,236,469  // case 2: -2147483648 (overflow)
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return 0;
             }
