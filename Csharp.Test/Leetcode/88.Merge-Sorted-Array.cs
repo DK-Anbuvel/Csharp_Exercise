@@ -16,8 +16,8 @@ namespace Csharp.Test.Leetcode
 
             // Act & Assert
             // solution.Merge([1, 2, 3, 0, 0, 0],3, [2, 5, 6],3);
-             solution.Merge([5, 6, 7, 0, 0, 0],3, [2, 3, 9],3);
-             solution.Merge([1, 55, 98, 99, 0, 0],4, [2, 56],2);
+            // solution.Merge2([5, 6, 7, 0, 0, 0],3, [2, 3, 9],3);
+             solution.Merge2([1, 55, 98, 99, 0, 0],4, [2, 56],2);
              solution.Merge([1],1, [],0);
              solution.Merge([0],0, [2],1);
         }
