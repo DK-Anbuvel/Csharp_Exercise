@@ -21,6 +21,7 @@ namespace Csharp_Exercise
             nums2.CopyTo(nums1, m); // 
             while (left <= right) // mistake it already in ascending order. no need to compare each element to others.
             {
+                 
 
                 int temp = nums1[left];
                 if (nums1[left] > nums1[right])
