@@ -48,5 +48,58 @@ namespace Csharp_Exercise
             }
             return false;
         }
+        public bool HasCycle1() // Floyd's cycle finding algorithm  O(n) , O(1)
+        {
+            var node1 = new ListNode1(2);
+            var node2 = new ListNode1(22);
+            var node3 = new ListNode1(3);
+            node1.next = node2;
+            node2.next = node3; // create cycle
+            //node3.next = node1;
+            ListNode1 head = node1;
+
+            ListNode1 rabbit = head; // fast pointer
+            ListNode1 tortoise = head; // slow pointer
+            while (rabbit != null && rabbit.next != null) // if cycle it loop till the end the condition satisfy and cycle not exist while condition fails and return false
+            {
+                tortoise = tortoise.next;
+                rabbit = rabbit.next.next;
+
+                if (tortoise == rabbit) return true;
+
+            }
+            return false;
+        }
+        public bool HasCycle2(ListNode head) // best case (time)
+        {
+            ListNode tmp = head;
+
+            if (head == null)
+                return false;
+            else if (head.next == head)
+                return true;
+
+            while (head != null && tmp != null && tmp.next != null)
+            {
+                tmp = tmp.next.next;
+                head = head.next;
+                if (head == tmp)
+                    return true;
+            }
+            return false;
+        }
+        public bool HasCycle3(ListNode head) // worst case (time)
+        {
+            if (head == null)
+                return false;
+            while (head.next != null)
+            {
+                if (head.next.val == int.MinValue)
+                    return true;
+                head.val = int.MinValue;
+                head = head.next;
+            }
+            return false;
+        }
     }
 }

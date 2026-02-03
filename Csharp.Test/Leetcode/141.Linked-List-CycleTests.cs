@@ -32,6 +32,7 @@ namespace Csharp.Test.Leetcode
             node2.next = node1; // create cycle
 
             // Assert
+            Assert.Equal(true, solution.HasCycle1());
             Assert.Equal(true, solution.HasCycle());
         }
     }
