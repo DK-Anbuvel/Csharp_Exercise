@@ -11,6 +11,7 @@ namespace Csharp.Test.Leetcode
             var solution = new Csharp_Exercise.Leecodes();
 
             // Act & Assert
+            Assert.Equal(true, solution.IsPalindrome1());
             Assert.Equal(true, solution.IsPalindrome());
         }
     }

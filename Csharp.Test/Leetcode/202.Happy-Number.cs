@@ -14,9 +14,8 @@ namespace Csharp.Test.Leetcode
            // Arrange
             var solution = new Csharp_Exercise.Leecodes();
 
-            //// Act & Assert
-            //Assert.Equal(true, solution());
-            //Assert.Equal(true, solution.IsHappy(323343242));
+            // Act & Assert
+            Assert.Equal(true, solution.IsHappy1(2));
 
         }
     }
