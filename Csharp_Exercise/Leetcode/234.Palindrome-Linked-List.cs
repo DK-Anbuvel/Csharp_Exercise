@@ -10,7 +10,7 @@ namespace Csharp_Exercise
     public partial class Leecodes
     {
         // Palindrome checked only in first and second half. not check in between part.
-        public bool IsPalindrome()
+        public bool IsPalindrome() // time O(N) space O(1)
         {
             var node1 = new ListNode(1);
             var node2 = new ListNode(2);
@@ -88,6 +88,97 @@ namespace Csharp_Exercise
                     return false;
             }
             return true;
+        }
+
+        public bool IsPalindrome2(ListNode head) // best case
+        {
+
+            if (head == null) return true;
+
+            if (head.next == null) return true;
+
+            ListNode sp = head;
+            ListNode fp = head;
+
+            int res1 = 0;
+
+            while (fp != null && fp.next != null)
+            {
+                res1 = res1 * 10 + sp.val;
+
+                sp = sp.next;
+
+                fp = fp.next.next;
+            }
+
+            if (fp != null)
+            {
+                sp = sp.next;
+            }
+
+            int res2 = NumberReverse(sp);
+            return res1 == res2;
+
+        }
+
+        int NumberReverse(ListNode head)
+        {
+            int res = 0;
+            int it = 1;
+
+            while (head != null)
+            {
+                res = head.val * it + res;
+                head = head.next;
+                it *= 10;
+            }
+
+            return res;
+        }
+
+        public bool IsPalindrome3(ListNode head) // worst case (time)
+        {
+            List<int> intList = new List<int>();
+            ListNode current = head;
+            while (current != null)
+            {
+                intList.Add(current.val);
+                current = current.next;
+            }
+            return intList.SequenceEqual(intList.ToArray().Reverse());
+        }
+        public bool IsPalindrome(ListNode head) //worst case (space)
+        {
+            ListNode jump1 = head;
+            ListNode jump2 = head;
+            while (jump2 != null && jump2.next != null)
+            {
+                jump1 = jump1.next;
+                jump2 = jump2.next.next;
+            }
+            jump1 = ReverseList(jump1);
+            while (jump1 != null)
+            {
+                Console.WriteLine($"{head.val} + {jump1.val}");
+                if (head.val != jump1.val) return false;
+                head = head.next;
+                jump1 = jump1.next;
+            }
+            return true;
+        }
+
+        public ListNode ReverseList(ListNode head)
+        {
+            if (head == null) return head;
+            if (head.next == null)
+            {
+                return head;
+            }
+            ListNode res = ReverseList(head.next);
+            // Console.WriteLine($"{res.val} -> {res.next.val} = {head.val}");
+            head.next.next = head;
+            head.next = null;
+            return res;
         }
     }
 }
