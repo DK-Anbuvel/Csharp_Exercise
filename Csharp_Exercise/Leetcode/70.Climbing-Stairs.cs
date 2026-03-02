@@ -1,8 +1,15 @@
 ﻿namespace Csharp_Exercise
 {
     public partial class Leecodes
-    {
-        public int ClimbStairs(int n) //Memoization O(n) O(n)
+    {/*
+        Let take step[3] = total ways to climb in step[2]  + total ways to climb in step[1].
+
+        step[1] = step[0] to one step ---> total ways to climb step[1] is 1.
+        step[2] = step[1] to one step and step[0] to two steps ---> total ways to climb step[2] is 2.
+        then step[3] = 1+2 = 3 ways. 
+        simple.
+      */
+        public int ClimbStairs(int n) //dynamic programming / Memorization O(n) O(n) // step[n] = step[n-1] + step[n-2]
         {
             int[] dp = new int[n + 1];
             Array.Fill(dp, -1);
@@ -13,8 +20,7 @@
         {
             if (n <= 1) return 1;
             if (dp[n] != -1) return dp[n];
-            dp[n] = ClimbStairsHelper(n - 1, dp) +
-                    ClimbStairsHelper(n - 2, dp);
+            dp[n] = ClimbStairsHelper(n - 1, dp) + ClimbStairsHelper(n - 2, dp);
             return dp[n];
         }
         public int ClimbStairs1(int n)  //Tabulation O(n) O(n)
