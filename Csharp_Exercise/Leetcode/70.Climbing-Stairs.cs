@@ -1,4 +1,6 @@
-﻿namespace Csharp_Exercise
+﻿using System.Numerics;
+
+namespace Csharp_Exercise
 {
     public partial class Leecodes
     {/*
@@ -44,5 +46,101 @@
             }
             return thirdNum;
         }
+        public int ClimbStairs3(int n) // 
+        {
+            if (n > 3)
+            {
+                int totalsteps = n;
+                int r = 1;
+                int step2 = 1;
+                int step1 = totalsteps - step2 * 2;
+                n = n - 2;
+                while (n >= 0)
+                {
+                    r = r + combination(step2 + step1, step1, step2);
+                    ++step2;
+                    step1 = totalsteps - step2 * 2;
+                    n = n - 2;
+                }
+                return r;
+            }
+            else
+            {
+                return n;
+            }
+        }
+        int combination(int total, int step1, int step2)
+        {
+            BigInteger totalfact = 1;
+            if (step1 == 0)
+            {
+                step1 = 1;
+            }
+            if (step2 == 0)
+            {
+                step2 = 1;
+            }
+            int big = step2;
+            int small = step1;
+            if (step1 > step2)
+            {
+                big = step1;
+                small = step2;
+            }
+
+            for (int i = total; i > big; i--)
+            {
+                totalfact = totalfact * i;
+            }
+
+            for (int i = 2; i <= small; i++)
+            {
+                totalfact = totalfact / i;
+            }
+            return (int)(totalfact);
+        } 
+        //space-optimized approach
+        public int ClimbStairs4(int n)
+        {
+            if (n == 0 || n == 1) return 1;
+            int prev1 = 1;
+            int prev2 = 1;
+
+            for (int i = 2; i <= n; i++)
+            {
+                int curr = prev1 + prev2;
+                prev2 = prev1;
+                prev1 = curr;
+            }
+            return prev1;
+        }
+        Dictionary<int, int> memo = new();
+        public int ClimbStairs5(int n)
+        {
+            if (n == 0)
+            {
+                return 0;
+            }
+            if (n == 1)
+            {
+                return 1;
+            }
+            if (n == 2)
+            {
+                return 2;
+            }
+            if (memo.ContainsKey(n))
+            {
+                return memo[n];
+            }
+            ;
+            int res = ClimbStairs(n - 1) + ClimbStairs(n - 2);
+            if (!memo.ContainsKey(n))
+            {
+                memo.Add(n, res);
+            }
+            return res;
+        }
+
     }
 }
