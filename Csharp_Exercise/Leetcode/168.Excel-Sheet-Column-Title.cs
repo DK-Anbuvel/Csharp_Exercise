@@ -10,7 +10,12 @@ namespace Csharp_Exercise
     public partial class Leecodes
     {
         public string ConvertToTitle(int columnNumber)
-        {
+        { /*
+            stored values in dictionary.
+            Here divided the columnNumber by 26 add remainder value in result;
+            till columnNumber less by 26.
+            and added Last columnNumber value in result;
+           */
             Dictionary<int, string> alphabets = new Dictionary<int, string>
             {
                 {1,"A" },
@@ -18,7 +23,7 @@ namespace Csharp_Exercise
                 {3,"C" },
                 {4,"D" },
                 {5,"E" },
-                {6,"E" },
+                {6,"F" },
                 {7,"G" },
                 {8,"H" },
                 {9,"I" },
@@ -41,15 +46,35 @@ namespace Csharp_Exercise
                 {26,"Z" }
             };
 
-            if (columnNumber < 27) return alphabets[columnNumber];
+            if (columnNumber < 27) return alphabets[columnNumber]; //728 --> AAZ 
             string res = string.Empty;
+            bool isDivided = false;
             
-            while(columnNumber < 27)
+            while(columnNumber >26)
             {
-                int questioned = columnNumber / 26;
                 int reminder = columnNumber % 26;
+                if (reminder != 0)
+                {
+                    if (isDivided)
+                        res = alphabets[columnNumber - 1] + res;
+                    else
+                        res = alphabets[reminder] + res;
 
+                      isDivided = false;
+                }
+                else
+                {
+                    res = res+"Z";// rem = 0 means 26
+                    isDivided=true;
+                }
+                columnNumber = columnNumber / 26;
             }
+            if (isDivided)
+                res = alphabets[columnNumber-1] + res;
+            else
+                res = alphabets[columnNumber] + res;
+
+            return res;
         }
     }
 }
