@@ -9,7 +9,7 @@ namespace Csharp_Exercise
 {
     public partial class Leecodes
     {
-        public string ConvertToTitle(int columnNumber)
+        public string ConvertToTitle(int columnNumber) // logic failed by reminder 0 numbers
         { /*
             stored values in dictionary.
             Here divided the columnNumber by 26 add remainder value in result;
@@ -75,6 +75,41 @@ namespace Csharp_Exercise
                 res = alphabets[columnNumber] + res;
 
             return res;
+        }
+
+        public string ConvertToTitle1(int columnNumber)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // set static variable for get alphabets place value
+            var sb = new StringBuilder(); // for result store 
+            while (columnNumber > 0) // since greater then 0 loop continues.
+            {
+                columnNumber--; // to handle 26 no. perfect divider , first minis 1 then modules(%) 26 then add the 1 
+
+                var d = columnNumber % 26;
+                sb.Insert(0, chars[d]);
+                columnNumber /= 26;  
+            }
+
+            return sb.ToString();
+        }
+        public string ConvertToTitle2(int columnNumber) //O(log26n) time,O(log26n) space.
+        {
+            string result = "";
+            while (columnNumber > 0)
+            {
+                columnNumber--;
+                char c = (char)('A' + columnNumber % 26); // magic come from ASCII code. 
+                result = c + result;
+                columnNumber /= 26;
+            }
+            return result;
+        }
+        public string ConvertToTitle3(int columnNumber)//Converting a decimal number to a bijective base-26 system using recursion. top-down approach O(log n) time,O(log n) space.
+        {
+            if (columnNumber == 0) return "";
+            columnNumber--;
+            char c = (char)('A' + columnNumber % 26);
+            return ConvertToTitle3(columnNumber / 26) + c;
         }
     }
 }

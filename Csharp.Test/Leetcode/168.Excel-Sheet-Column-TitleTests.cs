@@ -9,7 +9,9 @@ namespace Csharp.Test.Leetcode
             var solution = new Csharp_Exercise.Leecodes();
 
             // Act & Assert
-            Assert.Equal("AZ", solution.ConvertToTitle(52)); 
+            Assert.Equal("AZ", solution.ConvertToTitle2(52)); 
+            Assert.Equal("AZ", solution.ConvertToTitle3(52)); 
+            Assert.Equal("AZ", solution.ConvertToTitle1(52)); 
             Assert.Equal("BA", solution.ConvertToTitle(53)); 
             Assert.Equal("AB", solution.ConvertToTitle(28)); 
             Assert.Equal("FXSHRXW", solution.ConvertToTitle(2147483647)); //EXSHRXW
