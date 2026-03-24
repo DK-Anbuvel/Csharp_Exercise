@@ -10,7 +10,7 @@
 
             // Act & Assert
             
-            solution.SortedArrayToBST2([-10, -3, 0, 5, 9]); // test even count.
+            solution.SortedArrayToBST7([-10, -3, 0, 5, 9]); // test even count.
             solution.SortedArrayToBST2([1,3]); // test ood count
             solution.SortedArrayToBST2([1,1,3,4]); // test duplicate no.
             solution.SortedArrayToBST2([1, 1,3]);
