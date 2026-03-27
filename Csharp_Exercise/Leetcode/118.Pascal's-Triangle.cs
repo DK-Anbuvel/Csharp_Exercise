@@ -4,7 +4,7 @@
     {
         public IList<IList<int>> Generate(int numRows) //time O(N^2) space O(N^2) Dynamic Programming
         {
-            IList<IList<int>> res = new List<IList<int>>();
+            IList<IList<int>> res = new List<IList<int>>(); // top-down approach
             
             for(i=0; i< numRows; i++)
             // why i not get syntax error (int i) , it declare some where in the class
