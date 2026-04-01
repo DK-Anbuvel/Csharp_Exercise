@@ -8,6 +8,7 @@
             var solution = new Csharp_Exercise.Leecodes();
 
             // Act & Assert
+             solution.GetRow(2);
              solution.Generate(2);
         }
     }
