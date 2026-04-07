@@ -1,0 +1,22 @@
+﻿
+Sql Execution Order:-
+    Sql does not execute queries in the same order they are written.
+    This may often confuses, but the excute order is
+
+From  --> identity the data source
+Where --> fuilter rows
+GroupBy -->group the data
+Having -->filter groups
+Select --> choose columns
+OrderBy --> sort the result
+Limit/offSet --> restrict rows
+    
+
+1) why can't use aggregate function in WHERE ?
+      because WHERE executes before GROUP BY
+
+2) why does ORDER BY allow aliases but WHERE doesn't ?
+        ORDER BY executes after SELECT.
+
+3) which executes first:WHERE or HAVING?
+       WHERE filters rows,HAVING filters groups

@@ -1,0 +1,23 @@
+﻿
+
+
+
+
+What is difference between != and <> operators in Sql Server?
+
+Since both are used as not operator.
+ E.g :
+select * from TableName where ColName <> value
+select * from TableName where ColName != value
+
+ans:-
+
+There is no difference. You can use both in MSSQL.
+
+The MSSQL doc says:
+
+!= functions the same as the <> (Not Equal To) comparison operator.
+
+But <> is defined in the ANSI 99 SQL standard and != is not.
+ So not all DB engines may support it and if you want to generate portable code
+ I recommend using <>.
