@@ -5,17 +5,22 @@
         public int MajorityElement(int[] nums)
         {
             /*
-              My Approach :-
-                1) Here access the entire loop 10^4 size so
-                   2 inner loop, get each element and compare all array element
-                   and store the count static variable
-                    time (n * n) // may be Time Limit Exception
-                    space (n)
+        My Approach :-
+         1) Here access the entire loop 10^4 size so
+            2 inner loop, get each element and compare all array element
+            and store the count static variable
+             time (n * n) // In worst case may be Time Limit Exception
+             space (n)
 
-                2) Dictionary<nums[i],count> and one iteration
-                     time (n)
-                     space (n)
-            */
+         2) Dictionary<nums[i],count> and one iteration
+              time (n)
+             space (n^2)
+         3) Linq
+         4) Trick answer, 
+         The majority element is the element that appears more than ⌊n / 2⌋ times
+         meaning it will occupy the middle position in the sorted array.
+         5) Boyer-Moore Voting Algorithm,
+     */
             Dictionary<int, int> temp = new Dictionary<int, int>();
             foreach (int i in nums)
             {
@@ -58,6 +63,14 @@
         }
         public int MajorityElement3(int[] nums)
         {
+            /*
+             * Boyer-Moore Voting Algorithm
+               This finds the majority element (appears more than n/2 times) in an array using O(1) space.
+
+               Core Idea
+               Think of it as an elimination game — non-majority elements cancel out majority elements one-for-one, but since the majority
+               appears more than half the time, it always survives.
+             */
             int count = 0;
             int candidate = 0;
 
@@ -67,10 +80,20 @@
                     candidate = num;
 
                 //  count += (num == candidate) ? 1 : -1;
-                count = (num == candidate) ? 1 : -1 + count;
+                count = count + (num == candidate ? 1 : -1);
             }
 
             return candidate;
         }
+        public int MajorityElement4(int[] nums)
+        {
+            Array.Sort(nums);
+            return nums[nums.Length / 2];
+        }
+        public int MajorityElement5(int[] nums) => nums.
+        GroupBy(m => m).
+        MaxBy(m => m.Count()).
+        Key;
     }
+
 }
