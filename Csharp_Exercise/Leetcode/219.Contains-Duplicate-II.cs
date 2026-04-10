@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿
 
 namespace Csharp_Exercise
 {
