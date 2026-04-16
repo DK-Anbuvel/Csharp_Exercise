@@ -29,6 +29,29 @@
             }
             return res;
         }
+        public IList<IList<int>> Generate3(int numRows)
+        {
+
+            IList<IList<int>> result = new List<IList<int>>();
+          //  if(numRows==1) return result.Add(new List<int> {1});
+
+            for (int i = 0; i < numRows; i++) // to limit the arrary range
+            {
+                List<int> temp = new List<int>();
+                temp.Add(1);
+                if (result.Count > 0)
+                {
+                    for (int j = 0; j + 1 < result[i - 1].Count; j++)
+                    {
+                        int sum = result[i - 1][j] + result[i - 1][j + 1];
+                        temp.Add(sum);
+                    }
+                    temp.Add(1);
+                }
+                result.Add(temp);
+            }
+            return result;
+        }
         public IList<IList<int>> Generate1(int numRows)
         {
             var result = new List<IList<int>>();

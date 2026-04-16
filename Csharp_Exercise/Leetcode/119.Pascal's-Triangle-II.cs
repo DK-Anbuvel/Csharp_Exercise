@@ -39,7 +39,7 @@
                     right = 0;
                 }
             }
-            return nRowArray;
+            return nRowArray;// how return type list<int>, code return array why error not occurred ?
         }
         public IList<int> GetRow1(int rowIndex)
         {
@@ -102,6 +102,29 @@
             }
 
             return row;
+        }
+
+        public IList<int> GetRow4(int rowIndex)
+        {
+            /*
+               result need last row only, 
+            */
+            List<int> result = new List<int>();
+            for (int i = 0; i <= rowIndex; i++)
+            {
+                List<int> temp = new List<int>();
+                temp.Add(1);
+                if (result.Count > 0)
+                {
+                    for (int j = 0; j + 1 < result.Count; j++)
+                    {
+                        temp.Add(result[j] + result[j + 1]);
+                    }
+                    temp.Add(1);
+                }
+                result = temp;
+            }
+            return result;
         }
     }
 }

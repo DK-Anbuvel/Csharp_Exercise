@@ -62,7 +62,7 @@ namespace Csharp_Exercise
                     result = temp;
                 }
 
-                if (height[left] > height[right])
+                if (height[left] > height[right]) // minimized the size
                     right--;
                 else
                     left++;
@@ -70,14 +70,18 @@ namespace Csharp_Exercise
 
             return result;
         }
-        public int MaxArea2(int[] height) // best case (time)
+        public int MaxArea2(int[] height) // best case (time) O(log n)
         {
             int l = 0;
             int r = height.Length - 1;
             int res = 0;
             while (l < r && res < (r - l) * 10000)
             {
-                res = Math.Max(res, height[l] > height[r] ? height[r] * (r - l) : height[l] * (r - l));
+                res =  Math.Max( res,
+                                 height[l] > height[r]
+                               ? height[r] * (r - l)  // y (height)  * x (to get exact container  r - 1)
+                               : height[l] * (r - l));
+
                 if (height[l] > height[r]) r--;
                 else l++;
             }
@@ -86,19 +90,23 @@ namespace Csharp_Exercise
 
         public int MaxArea3(int[] height) // best case (space)
         {
+            /*
+               This is also like  traditional 2 loop pattern, but here to minimized the loop run time.
+             */
             var right = new int[height.Length];
 
             right[height.Length - 1] = height[height.Length - 1];
+
             for (var i = height.Length - 2; i >= 0; i--)
             {
                 right[i] = Math.Max(height[i], right[i + 1]);
             }
 
             var maxArea = 0;
-            var maxLeft = 0;
+            var maxLeft = 0; 
             for (var i = 0; i < height.Length; i++)
             {
-                if (maxLeft >= right[i])
+                if (maxLeft >= right[i]) // if 
                 {
                     break;
                 }

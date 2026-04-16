@@ -1,20 +1,19 @@
 ﻿namespace Csharp_Exercise
 {
-    /**
- Definition for a binary tree node.**/
- public class TreeNode {
-      public int val;
-      public TreeNode left;
-      public TreeNode right;
-      public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
-         this.val = val;
-          this.left = left;
-         this.right = right;
-     }
- }
-
     public partial class Leecodes
-    {
+    {    /** Definition for a binary tree node.**/
+        public class TreeNode
+        {
+            public int val;
+            public TreeNode left;
+            public TreeNode right;
+            public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+            {
+                this.val = val;
+                this.left = left;
+                this.right = right;
+            }
+        }
         public TreeNode SortedArrayToBST(int[] nums)
         {
             /*
@@ -36,6 +35,7 @@
              * first half was Left side.
              * second half was right side.
              * 
+             * failed to height balanced tree
              * nums =[0,1,2,3,4,5]
              * output = [3,0,4,null,1,null,5,null,2] // since we indexed 0 based so least value first taken. so taken hight value first.
              * expected =[3,1,5,0,2,4]
@@ -49,7 +49,7 @@
                     temp.left = insertTree(temp.left, nums[i]);
                 else if (i > arrayMid)
                     temp.right = insertTree(temp.right, nums[i]);
-                    
+             
             }
             return temp;
         }
@@ -105,7 +105,7 @@
 
             int mid = nums.Length / 2;
             var tree = new TreeNode(nums[mid]);
-            tree.left = SortedArrayToBST3(nums[..mid]);//string s = "".Substring(0, 3);
+            tree.left = SortedArrayToBST3(nums[..mid]);//string s = "".Substring(0, mid);
             tree.right = SortedArrayToBST3(nums[(mid + 1)..]); //string s = "".Substring(1);
 
             return tree;
@@ -144,11 +144,8 @@
                     queue.Enqueue(node.right);
                 }
             }
-
             dfs(root, nums);
-
             return root;
-
         }
         private void dfs(TreeNode root, int[] nums)
         {
@@ -214,7 +211,7 @@
 
             return node;
         }
-        public TreeNode SortedArrayToBST8(int[] nums)
+        public TreeNode SortedArrayToBST8(int[] nums) // [-10, -3, 0, 5, 9]
         {
             var root = new TreeNode();
             if (nums.Length == 1)
@@ -228,7 +225,7 @@
 
             while (stack.Count > 0)
             {
-                var (node, left, right) = stack.Pop();
+                var (node, left, right) = stack.Pop(); // return the top object and remove
                 var mid = left + (right - left) / 2;
                 node.val = nums[mid];
 
@@ -238,7 +235,6 @@
                     node.left = lNode;
                     stack.Push((lNode, left, mid));
                 }
-
                 if (mid + 1 < right)
                 {
                     var rNode = new TreeNode();

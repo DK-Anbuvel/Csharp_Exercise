@@ -180,6 +180,92 @@ namespace Csharp_Exercise
         public int index { get; set; }
         public int price { get; set; }
 
+        }
+        public int MaxProfit7(int[] prices) //Time Limit Exceeded
+        {
+
+            /*
+              about Problem:- 
+                     this array probelm to max profit, person need to choose buy less price and sell hight price, to iteration typically move forward only.
+               since it loows like two pointer approach,
+               loop like snake 
+            [7, 1, 5, 3, 6, 4]
+            */
+            if (prices.Length < 2) return 0;
+
+            int l = 0, r = 1;
+            int result = 0;
+            bool isForward = true;
+            while (l < prices.Length-1)
+            {
+                if (r > prices.Length - 1 || l == r)
+                {
+                    isForward = !isForward;
+                    ++l;
+                    if (isForward) r += 2; else --r;
+                }
+
+
+                if (r < prices.Length && r != l)
+                {
+                    if (isForward)
+                    {
+                        if (prices[l] < prices[r])
+                            result = Math.Max(prices[r] - prices[l], result);
+                        r++;
+                    }
+                    else if (!isForward)
+                    {
+                        if (prices[l] < prices[r])
+                            result = Math.Max(prices[r] - prices[l], result);
+                        r--;
+                    }
+                }
+
+            }
+            return result;
+        }
+        public int MaxProfit8(int[] prices)
+        {
+
+            /*
+              about Problem:- 
+               approach 1 :-      this array problem to max profit, person need to choose buy less price and sell hight price, to iteration tipically move forward only.
+               since it looks like two pointer approach,
+               loop like snake 
+               result :- Failed due to Time out
+
+               approach 2:-
+
+                    quick eliminations:-
+                        * if prices less then 2 return 0.
+                        * if array is ascending order return 0.
+                    Intuitions:-
+                        * max value should be in lowest - highest.
+                    pseudocode :-
+                        int lowest =0
+                        int maxprofit =0
+                        for loop ( prices n times)
+                          if (n[i] < lowest)
+                             lowest = n[i]
+                          if(lowest < n[i])
+                             maxprofit = Math.Max(maxprofit,lowest - n[i])
+
+                         return maxprofit 
+                    submit result:-
+                         runtime : 2ms , time = O(n) , space = O(1)
+           */
+            if (prices.Length < 2) return 0;
+            int lowest = prices[0], maxprofit = 0;
+            for (int i = 1; i < prices.Length; i++)
+            {
+                if (prices[i] < lowest)
+                    lowest = prices[i];
+                if (lowest < prices[i])
+                    maxprofit = Math.Max(maxprofit, prices[i] - lowest);
+            }
+            return maxprofit;
+
+        }
     }
-}
 }
