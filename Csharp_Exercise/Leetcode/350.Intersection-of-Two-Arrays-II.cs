@@ -95,7 +95,6 @@
                     right++;
                 }
             }
-
             return res.ToArray();
         }
     }
