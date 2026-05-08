@@ -54,7 +54,7 @@
             for (var i = 0; i < nums.Count(); i++)
             {
                 curr = nums[i];
-                sum = sum * curr + curr;
+                sum = sum * curr + curr; // 0 * 0 + 0    2 * 1 + 1    3 * 0 + 0
                 max = Math.Max(sum, max);
             }
             return max;
