@@ -1,0 +1,34 @@
+﻿
+
+/* Write your T-SQL query statement below */
+
+-- Approach-1  Group by
+
+select email from Person group by email having count(email) > 1
+SELECT email FROM Person GROUP BY email HAVING COUNT(*) > 1; 
+
+--Approach-2 subquery (get distinct id from person table then not equal to select statement)
+  -- failed to due to seeking to get distict id, 
+
+ select email from Person where id not in (select distinct email from person)
+
+--Approach-3 self join  // ms 425
+
+SELECT DISTINCT p1.email FROM Person p1 JOIN Person p2 ON p1.email = p2.email AND p1.id <> p2.id;
+
+--Approach-4 CTC Best case
+
+with prep as (
+    select 
+        id,
+        email,
+        row_number() over(partition by email order by id )as rn
+    From 
+        Person 
+)
+select email from prep where rn = 2
+
+-- Approach - 5
+
+Select distinct email as Email from (Select *, dense_rank() over(partition by email order by id) as drnk from Person) x
+where x.drnk > 1;

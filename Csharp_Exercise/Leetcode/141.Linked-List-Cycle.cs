@@ -101,5 +101,31 @@ namespace Csharp_Exercise
             }
             return false;
         }
+        public bool HasCycle4(ListNode head)
+        {
+            /*
+             about this problem:-
+                Need to find the Cycle
+             my approach:-
+             
+              attempt 1:-
+                 here take each node store 
+                 in temp then compare to all ---O(n^2)
+
+                 it is a single linked list so only forward move only possible.
+
+               attempt 2:-
+                   store the visited on in Hashset that compare in all
+            */
+            HashSet<ListNode> vistedNode = new HashSet<ListNode>();// O(n)
+            while (head != null)
+            {
+                if (vistedNode.Contains(head)) return true; // O(n)  
+                vistedNode.Add(head);
+                head = head.next;
+              
+            }
+            return false;
+        }
     }
 }

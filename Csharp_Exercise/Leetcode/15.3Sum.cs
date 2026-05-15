@@ -16,7 +16,7 @@ namespace Csharp_Exercise
         //  [-1, 0, 1, 2, -1, -4]
         public IList<IList<int>> ThreeSum(int[] nums) // Two pointer method  O(n^2)
         {
-            nums.Append(2);
+         //   nums.Append(2);
           
             IList<IList<int>> result = new List<IList<int>>();
             Array.Sort(nums); // first the no. makes easy to handle duplicate values.
@@ -46,7 +46,6 @@ namespace Csharp_Exercise
             }
             return result;
         }
-
         public IList<IList<int>> ThreeSum2(int[] nums)  // Best case (time) 
         {
             var result = new List<IList<int>>();
@@ -132,9 +131,6 @@ namespace Csharp_Exercise
             return result;
 
         }
-
-
-
         public IList<IList<int>> ThreeSum4(int[] nums) //worst case (space)
         {
             List<IList<int>> ans = new List<IList<int>>();
