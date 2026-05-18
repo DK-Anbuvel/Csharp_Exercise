@@ -98,7 +98,7 @@ namespace Csharp_Exercise
             while (columnNumber > 0)
             {
                 columnNumber--;
-                char c = (char)('A' + columnNumber % 26); // magic come from ASCII code. 
+                char c = (char)('A' + columnNumber % 26); // magic come from ASCII code.  // first: columnNumber % 26 second: 'A' + module
                 result = c + result;
                 columnNumber /= 26;
             }
