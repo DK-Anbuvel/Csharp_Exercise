@@ -1,0 +1,80 @@
+﻿
+
+-- Approach-1  Dense_Rank() 
+
+CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
+BEGIN
+    RETURN (
+        /* 
+           salary sorted by desc and distinct
+           distinct top 1, order by desc , 
+        */
+          select salary as getNthHighestSalary from (
+                select distinct 
+                        salary,
+                        Dense_Rank() over( order by salary desc) as TblRank 
+                 from Employee
+             ) as TblSort where TblRank=@N
+
+    );
+END
+
+
+
+-- Approach-2  Offset()
+
+CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
+BEGIN
+    IF @N <= 0 
+    RETURN NULL;
+
+    RETURN (
+        -- SELECT (
+            SELECT DISTINCT SALARY
+            FROM EMPLOYEE
+            ORDER BY SALARY DESC
+            OFFSET (@N - 1) ROWS FETCH NEXT 1 ROWS ONLY
+        -- ) AS RESULT
+    );
+END
+
+-- Approach-3 CTC  // Here col Name ignored getNthHighestSalary
+
+CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
+BEGIN
+    DECLARE @Value AS INT = NULL;
+
+    ;WITH Salaries AS (
+        SELECT 
+            salary,
+            ROW_NUMBER() OVER (ORDER BY salary DESC) AS RowNumber
+        FROM Employee
+        GROUP BY salary
+    )
+    SELECT @Value = 
+        salary
+    FROM Salaries
+    WHERE RowNumber = @N
+
+    RETURN (
+        SELECT MAX(salary)
+        FROM Employee
+        WHERE (salary = @Value)
+    );
+END
+
+-- Approach-4 Row_Number()
+
+CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
+BEGIN
+  IF @N <= 0  
+    RETURN null;
+
+RETURN (
+            select top (1) g.salary from (
+            select top (@N) x. salary as salary, row_number() over (order by x.salary desc) as rowNumber from 
+            (select distinct e.salary from Employee e)  as x
+             ) g 
+            where g.rowNumber >= @N  
+    );
+END
