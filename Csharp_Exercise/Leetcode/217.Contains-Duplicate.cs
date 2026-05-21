@@ -46,18 +46,18 @@
 
             return false;
         }
-        public bool ContainsDuplicate4(int[] nums)
+        public bool ContainsDuplicate4(int[] nums)  // best case O(1) but in Worst case O(n^2)
         {
             int n = nums.Length;
             for (int i = 1; i < n; i++)
             {
-                for (int j = i; j > 0 && nums[j - 1] >= nums[j]; j--)
+                for (int j = i; j > 0 && nums[j - 1] >= nums[j]; j--) // nums[j - 1] >= nums[j] is input array is sort ?
                 {
                     if (nums[j] == nums[j - 1])
                     {
                         return true;
                     }
-                    (nums[j], nums[j - 1]) = (nums[j - 1], nums[j]);
+                    (nums[j], nums[j - 1]) = (nums[j - 1], nums[j]); // if  nums[j - 1] >= nums[j] swap the name, small one move forward.
                 }
 
             }

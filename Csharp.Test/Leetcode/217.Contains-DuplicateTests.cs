@@ -9,7 +9,7 @@
             var solution = new Csharp_Exercise.Leecodes();
 
             // Act & Assert
-            Assert.Equal(true, solution.ContainsDuplicate3([1, 2, 3, 1]));
+            Assert.Equal(true, solution.ContainsDuplicate4([1, 2, 3, 1]));
         }
     }
 }
