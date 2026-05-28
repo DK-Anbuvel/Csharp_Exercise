@@ -156,7 +156,7 @@ namespace Csharp_Exercise
                 jump1 = jump1.next;
                 jump2 = jump2.next.next;
             }
-            jump1 = ReverseList(jump1);
+            jump1 = ReverseList1(jump1);
             while (jump1 != null)
             {
                 Console.WriteLine($"{head.val} + {jump1.val}");
@@ -167,14 +167,14 @@ namespace Csharp_Exercise
             return true;
         }
 
-        public ListNode ReverseList(ListNode head)
+        public ListNode ReverseList1(ListNode head)
         {
             if (head == null) return head;
             if (head.next == null)
             {
                 return head;
             }
-            ListNode res = ReverseList(head.next);
+            ListNode res = ReverseList1(head.next);
             // Console.WriteLine($"{res.val} -> {res.next.val} = {head.val}");
             head.next.next = head;
             head.next = null;
