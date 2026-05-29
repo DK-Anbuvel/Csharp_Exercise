@@ -7,7 +7,6 @@
             /*
                My approach :-
                    store head then compare with current node with next node --O(n)
-
             */
             if (head == null) return head;
             ListNode HeadNode = head; // Since it is reference type, Here assigning the reference (address) to the same object in memory 
@@ -30,7 +29,6 @@
         public ListNode DeleteDuplicates1(ListNode head)
         {
             ListNode temp = head;
-
             while (temp != null && temp.next != null)
             {
                 if (temp.val == temp.next.val)
@@ -42,7 +40,6 @@
                     temp = temp.next;
                 }
             }
-
             return head;
         }
         public ListNode DeleteDuplicates2(ListNode head) //1 -> 1 -> 2 -> 3 -> 3
