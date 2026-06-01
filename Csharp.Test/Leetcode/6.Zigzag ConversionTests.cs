@@ -17,7 +17,7 @@ namespace Csharp.Test.Leetcode
             var solution = new Csharp_Exercise.Leecodes();
 
             // Act & Assert
-            Assert.Equal("PAHNAPLSIIGYIR", solution.Convert("PAYPALISHIRING",3)); 
+            Assert.Equal("PAHNAPLSIIGYIR", solution.Convert0("PAYPALISHIRING",3)); 
             Assert.Equal("PAHNAPLSIIGYIR", solution.Convert4("PAYPALISHIRING",3)); 
 
         }

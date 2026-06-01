@@ -8,7 +8,7 @@ namespace Csharp_Exercise
 {
     public  partial class Leecodes
     {
-        public string Convert(string s, int numRows)
+        public string Convert0(string s, int numRows)
         {
             if(numRows ==1) return s;
 
