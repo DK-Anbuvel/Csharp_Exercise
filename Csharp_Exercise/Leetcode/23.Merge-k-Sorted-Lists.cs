@@ -4,7 +4,6 @@
     {
         public ListNode MergeKLists(ListNode[] lists)
         {
-
             /*
                About this problem:-
                   Here array of sorted link list given, need return single sorted linked list.

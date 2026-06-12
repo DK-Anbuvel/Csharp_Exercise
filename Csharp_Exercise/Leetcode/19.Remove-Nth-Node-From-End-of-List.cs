@@ -43,7 +43,7 @@
             return null;
         }
 
-        public ListNode RemoveNthFromEnd1(ListNode head, int n) //0 ms Two pointers  time O(Sz) space O(1)
+        public ListNode RemoveNthFromEnd1(ListNode head, int n) //0 ms Two pointers  time O(n) space O(1)
         {   //head = [d,1,2,3,4,5], n = 2
             //head = [d,1,2,3,4], n = 2
             //head = [d,1], n = 1
