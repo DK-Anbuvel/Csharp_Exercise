@@ -51,7 +51,6 @@
             }
             return DistinctNodes.next;
         }
-
         public ListNode DeleteDuplicatesII1(ListNode head)
         {
             Dictionary<int, int> freq = new();
@@ -78,40 +77,73 @@
             tail.next = null;
             return dummy.next;
         }
-        public ListNode DeleteDuplicatesII2(ListNode head)
+        public ListNode DeleteDuplicatesII2() // time O(n) space O(N)
         {
+            var node1 = new ListNode(1);
+            var node2 = new ListNode(2);
+            var node3 = new ListNode(2);
+            var node4 = new ListNode(2);
+            var node5 = new ListNode(3);
+            var node6 = new ListNode(3);
+            var node7 = new ListNode(4);
+            node1.next = node2;
+            node2.next = node3;
+            node3.next = node4;
+            node4.next = node5;
+            node5.next = node6;
+            node6.next = node7;
+
+            ListNode head = node1;
+
+            if (head == null || head.next == null) return head;
             var current = head;
             Dictionary<int /*number in question*/, int /*count*/> seen = new(); // 1,2,3,4,
-            Stack<int> result = new(); // 1,2,4
+            Stack<int> result = new(); // 1,2,4  Last-in-first-out
             while (current != null)
             {
                 if (seen.TryAdd(current.val, 0))
                 {
-
-                    result.Push(current.val);
-
+                    result.Push(current.val);// initially added to result.
                 }
                 else
                 {
-                    seen[current.val]++;
+                    seen[current.val]++;  // count++
                     if (seen[current.val] <= 1)
-                        result.TryPop(out _);
+                        result.TryPop(out _); // return and remove the first element
                 }
                 current = current?.next;
             }
 
+            if (result.Count < 1) return null;
 
+            ListNode? resultRoot = null;
+            //var resultArray = result.ToArray();// here why array? bca stack follow LIFO so, it can access value like 4,3,2,1 
+            //for (int i = resultArray.Length - 1; i >= 0; i--)
+            //{
+            //    current.next = new(resultArray[i]);
+            //    current = current.next;
 
-            ListNode resultRoot = new();
-            current = resultRoot;
-            var resultArray = result.ToArray();
-            for (int i = resultArray.Length - 1; i >= 0; i--)
+            //}
+            // or (to reuse the stack i could add the value on head node.
+            while (result.Count > 0)
             {
-                current.next = new(resultArray[i]);
-                current = current.next;
+                ListNode newNode = new ListNode(result.Pop(), null);
 
+                if (resultRoot == null) // to remove initial null node , it only failed when no value [], bca this case it need to return null here it return 1 element.
+                {
+                    resultRoot = newNode;
+                    current = resultRoot;
+                }
+                else
+                {
+                    newNode.next = current;
+                    current = newNode;
+                }
             }
-            return resultRoot.next;
+
+
+            //return resultRoot.next;
+            return current;
 
         }
         public ListNode DeleteDuplicatesII3(ListNode head)
