@@ -1,4 +1,6 @@
-﻿namespace Csharp_Exercise
+﻿using System.Xml.Linq;
+
+namespace Csharp_Exercise
 {
     public partial class Leecodes
     {
@@ -75,8 +77,23 @@
 
             return dummyHead.next;
         }
-        public ListNode ReverseBetween1(ListNode head, int left, int right)
+        public ListNode ReverseBetween1()
         {
+      
+            var node1 = new ListNode(1);
+            var node2 = new ListNode(2);
+            var node3 = new ListNode(3);
+            var node4 = new ListNode(4);
+            var node5 = new ListNode(5);
+
+            node1.next = node2;
+            node2.next = node3;
+            node3.next = node4;
+            node4.next = node5;
+
+
+            ListNode head = node1; int left = 2, right = 4;
+
             if (head == null || left == right)
                 return head;
 
@@ -90,14 +107,13 @@
 
             ListNode curr = prev.next;
 
-            for (int i = 0; i < right - left; i++)
+            for (int i = 0; i < right - left; i++) // head = [d,1,2,3,4,5], left = 2, right = 4
             {
-                ListNode temp = curr.next;
+                ListNode temp = curr.next;// ?????
                 curr.next = temp.next;
                 temp.next = prev.next;
                 prev.next = temp;
             }
-
             return dummy.next;
         }
         public ListNode ReverseBetween2(ListNode head, int left, int right)
