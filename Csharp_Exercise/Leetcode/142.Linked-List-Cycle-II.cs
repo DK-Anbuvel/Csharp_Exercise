@@ -33,5 +33,100 @@ namespace Csharp_Exercise
 
             return null;
         }
+        public ListNode DetectCycle1()
+        {
+            /* Floyd's Cycle Detection (Tortoise and Hare):
+              - start 2 pointers
+                    fast moves 2 nodes at a time
+                    slow moves 1 node at a time
+              - wait for them to meet
+              - As soon as they meet
+                    Move fast pointer to head
+                    Move both pointers at same speed
+              - wait for them to meet again
+              - They will meet at the starting of loop.
+             */
+            var node1 = new ListNode(3);
+            var node2 = new ListNode(2);
+            var node3 = new ListNode(0);
+            var node4 = new ListNode(-4);
+            var node5 = new ListNode(2);
+
+            node1.next = node2;
+            node2.next = node3; 
+            node3.next = node4; 
+            node4.next = node5; 
+            node5.next = node3; 
+            
+
+            ListNode head = node1;
+
+            ListNode slow = head;
+            ListNode fast = head;
+
+            while (fast != null && fast.next != null)
+            {
+                slow = slow.next;
+                fast = fast.next.next;
+                if (fast == slow)
+                {
+                    slow = head;
+                    while (slow != fast)
+                    {
+                        slow = slow.next;
+                        fast = fast.next;
+                    }
+                    return slow;
+                }
+            }
+            return null;
+        }
+        public ListNode DetectCycle2(ListNode head)
+        {
+            Dictionary<ListNode, bool> dt = new Dictionary<ListNode, bool>();
+
+            ListNode temp = head;
+
+            while (temp != null)
+            {
+                if (dt.ContainsKey(temp) && dt[temp] == true)
+                {
+                    return temp;
+                }
+
+                dt.Add(temp, true);
+                temp = temp.next;
+            }
+
+            return null;
+        }
+        public ListNode DetectCycle3()
+        {
+            var node1 = new ListNode(3);
+            var node2 = new ListNode(2);
+            var node3 = new ListNode(0);
+            var node4 = new ListNode(-4);
+            var node5 = new ListNode(2);
+
+            node1.next = node2;
+            node2.next = node3;
+            node3.next = node4;
+            node4.next = node5;
+            node5.next = node3;
+
+
+            ListNode head = node1;
+            ListNode b = head;
+            while (b != null)
+            {
+                if (b.val == 100001)
+                    return b;
+                else
+                    b.val = 100001;
+
+                b = b.next;
+            }
+            return null;
+        }
     }
 }
