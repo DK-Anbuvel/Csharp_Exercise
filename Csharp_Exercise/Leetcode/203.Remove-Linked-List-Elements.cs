@@ -95,5 +95,28 @@
             }
             return distinctElement.next;
         }
+      
+        public ListNode RemoveElements4(ListNode head, int val)
+        {
+            if (head == null) return head;
+
+            ListNode dummy = new ListNode(9); // [1] val=1
+            dummy.next = head;
+
+            ListNode currentNode = dummy;
+
+            while (currentNode.next != null)  // time O(n) space O(1)
+            {
+                if (currentNode.next.val == val)
+                {
+                    currentNode.next = currentNode.next.next;
+                }
+                else
+                {
+                    currentNode = currentNode.next;
+                }
+            }
+            return dummy.next;
+        }
     }
 }
