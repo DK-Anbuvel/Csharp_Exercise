@@ -48,25 +48,65 @@
             }
             return reverseList.next;
         }
-        public ListNode ReverseList2(ListNode head)
+        public ListNode ReverseList2() // recursion pattern  
         {
+            var node1 = new ListNode(1);
+            var node2 = new ListNode(2);
+            var node3 = new ListNode(3);
+            var node4 = new ListNode(4);
+            var node5 = new ListNode(5);
+            node1.next = node2;
+            node2.next = node3;
+            node3.next = node4;
+            node4.next = node5;
+
+
+            ListNode head = node1;
             if (head == null)
                 return null;
 
-            var res = ReverseListHelper(head);
+            var res = ReverseListHelper(head); // for iteration done in separately 
             return res.Head;
         }
 
-        private (ListNode Tail, ListNode Head) ReverseListHelper(ListNode head)
+        private (ListNode Tail, ListNode Head) ReverseListHelper(ListNode head)// why return 2 list, 
         {
+
+            /*
+        private ListNode ReverseListHelper(ListNode head)// why return 2 list
+        {
+            if (head.next == null)
+                return (head);
+
+            var res = ReverseListHelper(head.next);   // Head holds the reverse list. 
+            res.next = head; // if single Head only used, it not hold the list, like first time [4,3] then next time it will replace by [4,2]
+
+            return (res);
+        }
+
+
+        private ListNode ReverseListHelper(ListNode head)// it work only 2 node list only. 
+        {
+            if (head.next == null)
+                return (head);
+
+            var res = ReverseListHelper(head.next);   // 
+            head.next = null;  
+            res.next = head; // it only store the lost and first nodes only.
+
+            return (res);
+        }
+            */
+
             if (head.next == null)
                 return (head, head);
 
-            var res = ReverseListHelper(head.next);
-            head.next = null;
-            res.Tail.next = head;
+            var res = ReverseListHelper(head.next);   // Head holds the reverse list. 
+            head.next = null; // case [3,4] :-  here need to cut the next node, bcz if i set to Tail it get like [4,3,4] 
+            res.Tail.next = head;// 
 
-            return (head, res.Head);
+
+            return (head, res.Head);//
         }
         public ListNode ReverseList3() //nested method with recursion.
         {
