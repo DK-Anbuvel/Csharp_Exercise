@@ -20,8 +20,7 @@
                  
                 case 1 : [1,2] n=1
                     here need output [1] about approach when b can't maintain n size
-                    so used dummy node in forent of head.
-
+                    so used dummy node in front of head.
             */
             ListNode currentNode = head;
             while (currentNode.next != null && n > 0)
@@ -84,7 +83,7 @@
             ListNode dummy = new(0, head);
             ListNode prev = dummy;
 
-            while (head is not null)
+            while (head is not null) // get length of the head.
             {
                 length++;
                 head = head.next;
@@ -92,7 +91,7 @@
 
             int position = 1;
             head = dummy.next;
-            while (position < length - n + 1)
+            while (position < length - n + 1) // required position = ( length - n ) + 1
             {
                 prev = head;
                 head = head.next;
@@ -181,15 +180,15 @@
             {
                 Console.WriteLine($"{counter}");
                 var loopNode = stack.Pop();
-                if (counter == n - 1)
+                if (counter == n - 1) // 1-1 =0 tail node
                 {
-                    tempnode = loopNode;
+                    tempnode = loopNode; 
                 }
                 if (counter == n + 1)
                 {
                     loopNode.next = tempnode;
                 }
-                if (counter == slen)
+                if (counter == slen) // head node.
                 {
                     head = loopNode;
                 }
