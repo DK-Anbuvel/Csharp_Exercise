@@ -9,7 +9,7 @@
             var solution = new Csharp_Exercise.Leecodes();
 
             // Act & Assert
-            solution.AddTwoNumbersI();
+            solution.AddTwoNumbersI(null,null);
             solution.AddTwoNumbers();
         }
     }

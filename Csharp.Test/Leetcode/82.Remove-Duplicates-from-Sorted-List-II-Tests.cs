@@ -10,7 +10,8 @@
             // Arrange
             var solution = new Csharp_Exercise.Leecodes();
 
-             solution.DeleteDuplicatesII2();
+             //solution.DeleteDuplicatesII2();
+             solution.DeleteDuplicatesII3();
              solution.DeleteDuplicatesII();
         }
     }

@@ -41,9 +41,9 @@
                 if (c_node.next != null && c_node.val == c_node.next.val)
                 {
                     while (c_node.next != null && c_node.val == c_node.next.val)
-                    { c_node = c_node.next; }
+                     c_node = c_node.next; 
 
-                    p_node.next = c_node.next;// magic is here (only assign happening there) 
+                    p_node.next = c_node.next;// magic is here (only assign happening there) (replacing the existing value)
                 }else
                     p_node = p_node.next;  // only moves when not duplicate val
 
@@ -116,7 +116,9 @@
 
             if (result.Count < 1) return null;
 
-            ListNode? resultRoot = null;
+           // ListNode? resultRoot = null;
+            ListNode? resultRoot = new ListNode(result.Pop(), null);
+            current = resultRoot;
             //var resultArray = result.ToArray();// here why array? bca stack follow LIFO so, it can access value like 4,3,2,1 
             //for (int i = resultArray.Length - 1; i >= 0; i--)
             //{
@@ -127,18 +129,18 @@
             // or (to reuse the stack i could add the value on head node.
             while (result.Count > 0)
             {
-                ListNode newNode = new ListNode(result.Pop(), null);
+               ListNode newNode = new ListNode(result.Pop(), null);
 
-                if (resultRoot == null) // to remove initial null node , it only failed when no value [], bca this case it need to return null here it return 1 element.
-                {
-                    resultRoot = newNode;
-                    current = resultRoot;
-                }
-                else
-                {
+                //if (resultRoot == null) // to remove initial null node , it only failed when no value [], bca this case it need to return null here it return 1 element.
+                //{
+                //    resultRoot = newNode;
+                  //  current = resultRoot;
+             //   }
+             //   else
+             //   {
                     newNode.next = current;
                     current = newNode;
-                }
+              //  }
             }
 
 
@@ -146,10 +148,25 @@
             return current;
 
         }
-        public ListNode DeleteDuplicatesII3(ListNode head)
+        public ListNode DeleteDuplicatesII3()
         {
-            var seen = new HashSet<int>();
-            var twice = new HashSet<int>();
+            var node1 = new ListNode(1);
+            var node2 = new ListNode(1);
+            var node3 = new ListNode(2);
+            var node4 = new ListNode(2);
+            var node5 = new ListNode(3);
+            var node6 = new ListNode(3);
+            var node7 = new ListNode(4);
+            node1.next = node2;
+            //node2.next = node3;
+            node3.next = node4;
+            node4.next = node5;
+            node5.next = node6;
+            node6.next = node7;
+
+            ListNode head = node1;
+            var seen = new HashSet<int>(); // It store unique value// Hashset allow unique value and fast lookup, add, remove in O(1)
+            var twice = new HashSet<int>();// It store duplicate value
 
             var tempHead = head;
             while (tempHead != null)
@@ -165,18 +182,33 @@
                 tempHead = tempHead.next;
             }
 
-            var dummyHead = new ListNode(-1);
-            var currentTail = dummyHead;
+            //var dummyHead = new ListNode(-1); // why need to use this extra space, we already know the duplicate space,instead use head ref and remove those nodes.
+            //var currentTail = dummyHead;
 
-            tempHead = head;
-            while (tempHead != null)
+            //tempHead = head;
+            //while (tempHead != null)
+            //{
+            //    if (!twice.Contains(tempHead.val))
+            //    {
+            //        currentTail.next = new ListNode(tempHead.val);
+            //        currentTail = currentTail.next;
+            //    }
+            //    tempHead = tempHead.next;
+            //}
+            //return dummyHead.next;
+
+            var dummyHead = new ListNode(-1,head);// d 1 1
+            var presentHead = dummyHead;
+            var currentTail = dummyHead.next;//
+
+            while(currentTail != null)
             {
-                if (!twice.Contains(tempHead.val))
-                {
-                    currentTail.next = new ListNode(tempHead.val);
-                    currentTail = currentTail.next;
-                }
-                tempHead = tempHead.next;
+                if (twice.Contains(currentTail.val))
+                    presentHead.next = currentTail.next;//
+                else
+                    presentHead = presentHead.next;
+
+                currentTail = currentTail.next;
             }
             return dummyHead.next;
         }
