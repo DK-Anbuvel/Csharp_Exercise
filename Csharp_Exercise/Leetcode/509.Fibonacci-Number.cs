@@ -26,7 +26,7 @@
             }
             return map[n];
         }
-        public int Fib1(int n) // 
+        public int Fib1(int n) // O(n) O(1)
         {
             if (n <= 1)
                 return n;
@@ -44,19 +44,15 @@
         }
         private readonly int[] _alreadyComputedValues = new int[31];
 
-        public int Fib2(int n) //time O(1)
+        public int Fib2(int n) //time O(1) space O(31)
         {
             if (n is 0)
-            {
                 return 0;
-            }
 
             if (n is 1)
-            {
                 return 1;
-            }
 
-            if (_alreadyComputedValues[n] is not 0)
+            if (_alreadyComputedValues[n] is not 0) // if exist return else recursion 
                 return _alreadyComputedValues[n];
 
             return _alreadyComputedValues[n] = Fib(n - 1) + Fib(n - 2);
