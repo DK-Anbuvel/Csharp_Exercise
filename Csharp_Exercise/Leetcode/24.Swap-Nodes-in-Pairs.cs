@@ -78,7 +78,7 @@
 
             if (head is null || head.next is null) return head;
 
-            ListNode currentNode = head;
+            ListNode currentNode = head; // problem:hard to swap while standing on top the node.  why not? In single linkedlist we can move forward only, so that can do't have control on standing/pervious nodes.
 
             while (currentNode != null && currentNode.next != null)
             {
@@ -104,9 +104,8 @@
             return head; // head not modified.
 
         }
-        public ListNode SwapPairs2()
+        public ListNode SwapPairs2() // Time O(n) space O(1)
         {
-
             var node1 = new ListNode(1);
             var node2 = new ListNode(2);
             var node3 = new ListNode(3);
@@ -141,9 +140,8 @@
 
             }
             return dummyList.next; // head not modified.
-
         }
-        public ListNode SwapPairs3(ListNode head)
+        public ListNode SwapPairs3(ListNode head)  // same idea
         {
             ListNode dummyHead = new()
             {
@@ -175,8 +173,8 @@
 
             ListNode dummy = new();
             dummy.next = head;
-
-            ListNode p1 = dummy;
+             
+            ListNode p1 = dummy;// for iteration
             ListNode p2 = head;
             ListNode p3 = head.next;
             while (p1.next != null && p2.next != null)
@@ -185,44 +183,61 @@
                 p1.next = p3;
                 p2.next = p3.next;
                 p3.next = p2;
-                p1 = p2;
+                p1 = p2; // swaped , reassign point in S(n2) position,
                 Console.WriteLine($"p1.val {p1.val}");
                 if (p1.next != null)
                 {
-                    p2 = p1.next;
-                    if (p2.next != null)
-                    {
-                        p3 = p2.next;
-                    }
+                    p2 = p1.next; // reassign point to S(n2) + 1
+                    //if (p2.next != null)
+                    //{
+                    //    p3 = p2.next; // reassign point to S(n2) + 2
+                    //}
+                    p3 = p2.next;
                 }
             }
 
             return dummy.next;
         }
-        public ListNode SwapPairs5(ListNode head)
+
+        public ListNode MockDataSwapNo()
         {
-            if (head == null || head.next == null)
+            var node1 = new ListNode(1);
+            var node2 = new ListNode(2);
+            var node3 = new ListNode(3);
+            var node4 = new ListNode(4);
+            var node5 = new ListNode(5);
+            node1.next = node2;
+            node2.next = node3;
+            node3.next = node4;
+            //node4.next = node5;
+
+            ListNode head = node1;
+            return SwapPairs5(head);
+        }
+        public ListNode SwapPairs5(ListNode head)  // Each node is visited once, so the time complexity is O(n). O(n) (more precisely O(n/2) recursive calls
+        {
+            if (head == null || head.next == null) // return: less then 2 nodes.
             {
                 return head;
             }
             head.next.next = SwapPairs5(head.next.next);
             ListNode current = head.next;
-            ListNode Save = current.next;
+            ListNode Save = current.next;// remaining list
             current.next = head;
             head.next = Save;
             head = current;
             return head;
         }
-        public ListNode SwapPairs6(ListNode head)
+        public ListNode SwapPairs6(ListNode head)// Time O(n) space O(n) Beautiful code
         {
-            if (head == null || head.next == null) 
+            if (head == null || head.next == null) // 1 2 3 4
                 return head;
+             
+            var left = head; // 3   // 1 
+            var right = head.next; // 4 // 2
 
-            var left = head;
-            var right = head.next;
-
-            left.next = SwapPairs6(right.next);
-            right.next = left;
+            left.next = SwapPairs6(right.next); // 3 null // 1 4 3 null
+            right.next = left; // 4 3 null // 2 1 4 3 null 
 
             return right;
         }
