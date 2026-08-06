@@ -17,6 +17,7 @@ namespace Csharp.Test.Leetcode
             //Act
 
             // Act & Assert  head = [1,2,3,4,5]
+           var result5 = solution.ReverseList5();
            var result3 = solution.ReverseList2();
            var result4 = solution.ReverseList3();
            var result = solution.ReverseList();
