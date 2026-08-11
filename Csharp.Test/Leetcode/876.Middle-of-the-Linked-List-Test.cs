@@ -10,7 +10,7 @@
             // Arrange
             var solution = new Csharp_Exercise.Leecodes();
 
-            solution.MiddleNode2();
+            solution.MiddleNode();
             solution.MiddleNode();
         }
     }

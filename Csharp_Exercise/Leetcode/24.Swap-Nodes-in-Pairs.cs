@@ -1,4 +1,6 @@
-﻿namespace Csharp_Exercise
+﻿
+
+namespace Csharp_Exercise
 {
     public partial class Leecodes
     {
