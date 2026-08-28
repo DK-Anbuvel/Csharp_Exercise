@@ -6,7 +6,7 @@ namespace Csharp_Exercise
 {
     public partial class Leecodes
     {
-        public int MissingMultiple(int[] nums, int k) // time O(NlogN)  space O(N)
+        public int MissingMultiple(int[] nums, int k) // time O(N logN)  space O(N)
         {
             /*
              about this problem:-
@@ -18,13 +18,16 @@ namespace Csharp_Exercise
                     iterate nums.length time
                     if k exist then K=K*K
                     if k < nums[n] then return k , which means k smallest missing multiple no. in sorted arrary. 
-            Suggestions:
-Use a hash set to store multiples for O(n) time, trading space for speed.
- 
+             
+                attempt 2:-
+                    why not nums.Contains(multiple); ?
 
+            Suggestions:
+                 Use a hash set to store multiples for O(n) time, trading space for speed.
              */
 
             Array.Sort(nums); //[8,2,3,4,6] [2,3,4,6,8]
+            nums.Contains(k);
             int multiple = k;
             for (int i = 0; i < nums.Length; i++)
             {

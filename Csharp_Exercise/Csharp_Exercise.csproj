@@ -9,6 +9,23 @@
 
   <ItemGroup>
     <Folder Include="General\" />
+    <Folder Include="Leetcode\LinkedLists\" />
+    <Folder Include="Leetcode\Hashing\" />
+    <Folder Include="Leetcode\BinarySearch\" />
+    <Folder Include="Leetcode\Graphs\" />
+    <Folder Include="Leetcode\DynamicProgramming\" />
+    <Folder Include="Leetcode\Heaps\" />
+    <Folder Include="Leetcode\Backtracking\" />
+    <Folder Include="Leetcode\MontonicStackQueue\" />
+    <Folder Include="Leetcode\BitManipulation\" />
+    <Folder Include="Leetcode\Tries\" />
+    <Folder Include="Leetcode\PriorityQueues\" />
+    <Folder Include="Leetcode\SlidingWindow\" />
+    <Folder Include="Leetcode\TwoPointers\" />
+    <Folder Include="Leetcode\Trees\" />
+    <Folder Include="Leetcode\Queues\" />
+    <Folder Include="Leetcode\Stacks\" />
+    <Folder Include="Leetcode\Strings\" />
   </ItemGroup>
 
 </Project>
