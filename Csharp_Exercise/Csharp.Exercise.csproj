@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="01dsaProblems\LinkedLists\" />
+    <Folder Include="01dsaProblems\Hashing\" />
+    <Folder Include="01dsaProblems\BinarySearch\" />
+    <Folder Include="01dsaProblems\Graphs\" />
+    <Folder Include="01dsaProblems\DynamicProgramming\" />
+    <Folder Include="01dsaProblems\Heaps\" />
+    <Folder Include="01dsaProblems\Backtracking\" />
+    <Folder Include="01dsaProblems\MontonicStackQueue\" />
+    <Folder Include="01dsaProblems\BitManipulation\" />
+    <Folder Include="01dsaProblems\Tries\" />
+    <Folder Include="01dsaProblems\PriorityQueues\" />
+    <Folder Include="01dsaProblems\SlidingWindow\" />
+    <Folder Include="01dsaProblems\TwoPointers\" />
+    <Folder Include="01dsaProblems\Trees\" />
+    <Folder Include="01dsaProblems\Queues\" />
+    <Folder Include="01dsaProblems\Stacks\" />
+    <Folder Include="01dsaProblems\Strings\" />
+  </ItemGroup>
+
+</Project>

@@ -1,7 +1,12 @@
-﻿select * from tbl_emp_details
+﻿
+
 create procedure sp_details
-@param int as begin
-select * from tbl_emp_details where EmpId =@param end
+@param int 
+as begin
+
+select * from tbl_emp_details where EmpId =@param
+
+end
 
 alter Procedure sp_PrintevenNo
 @input int

@@ -1,5 +1,5 @@
-﻿using LINQ.Exercises;
-using LINQ.MockData;
+﻿using Csharp.Exercise.MockData;
+using LINQ.Exercises;
 using System;
 using System.Collections.Generic;
 using System.Linq;
