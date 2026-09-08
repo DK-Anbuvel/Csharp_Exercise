@@ -97,5 +97,36 @@
             }
             return res.ToArray();
         }
+        public int[] Intersect4(int[] nums1, int[] nums2)
+        {
+            /*
+             about the project :-
+               Here need to return comman element present in both arrays, including duplicates
+
+             my Approach:-
+               attempt 1 :-
+                 simply try do with LINQ
+                 nums1.Intersect(nums2); // it remove duplicate values.
+               attempt 2:-
+
+            */  //nums1 = [1,2,2,1], nums2 = [2,2]
+            Array.Sort(nums1); //[1,1,2,2]
+            Array.Sort(nums2); //[2,2]
+            List<int> result = new List<int>();
+            for (int i = 0, j = 0; i < nums1.Length && j < nums2.Length;)
+            {
+                if (nums1[i] < nums2[j]) // 0 < 1
+                    i++;
+                else if ((nums1[i] > nums2[j]))
+                    j++;
+                else if (nums1[i] == nums2[j])
+                {
+                    result.Add(nums1[i]);
+                    i++;
+                    j++;
+                }
+            }
+            return result.ToArray();
+        }
     }
 }
