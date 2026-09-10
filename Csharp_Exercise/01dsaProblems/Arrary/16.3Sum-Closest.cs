@@ -4,6 +4,44 @@
     {
         public partial class arrayProblem
         {
+            public int[] TwoSum(int[] nums, int target) // time:47min
+            {
+
+                /*
+                about this problem:
+                   Here return array indece of two element which was to sum equal to target.
+                   this array contain unique values.
+
+                My approach:-
+                   attempt 1:- brute force solutions
+                     two nested loop -- O(n^2)
+                    attempt 2:-
+                      lets use hashset to sort the given array
+                      x+y = target, so we can search with 
+                      x in iteration, y = x-target in search in hashset.
+
+                */
+                if (nums.Length == 2) return [0, 1];
+
+                Dictionary<int, int> c_nums = new Dictionary<int, int>();
+                int[] result = new int[2];
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    c_nums.Add(nums[i], i);
+                }
+                int x = 0;
+                int j = 0;
+                for (; j < nums.Length; j++)
+                { // [2,-7,11,3]
+                    x = target - (nums[j]);
+                    if (c_nums.ContainsKey(x) && c_nums[x] != j) // block same no. used both indece. [2,2], 4  
+                    {
+                        break;
+                    }
+                }
+
+                return [c_nums[x], j];
+            }
             public int ThreeSumClosest(int[] nums, int target) // time O(n^3) space O(1)
             {
                 /*
@@ -213,8 +251,8 @@
                 }
                 return closest;
             }
+           
 
-          
         }
     }
 }

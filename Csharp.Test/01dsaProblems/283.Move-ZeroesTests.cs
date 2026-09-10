@@ -13,7 +13,7 @@ namespace Csharp.Test.Leetcode
         public void MoveZeroTest()
         {
             // Arrange
-            var solution = new Csharp_Exercise.Leecodes();
+            var solution = new Csharp_Exercise.Leecodes.arrayProblem();
 
             // Act & Assert
             solution.MoveZeroes([0, 3, 0, 0, 3]);
