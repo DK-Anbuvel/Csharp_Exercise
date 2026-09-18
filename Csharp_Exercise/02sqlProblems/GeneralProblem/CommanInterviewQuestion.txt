@@ -1,0 +1,138 @@
+﻿
+
+top 2;
+
+select top 1 from (
+select top 2 salary from emp order by salary desc
+) order by asc
+
+
+select max(salary) as secoundhigh from emp where salary < 
+(select max(salary) from emp)
+
+select salary from (
+select salary, Dense_rank() over (order by salary desc) as rankNo from emp
+) E where rankNo = 2
+
+
+Find duplicate emails
+
+select email,count(*) as total from cus group by email having count(*) >1;
+
+find employees earning more than average salary
+
+select * from emp where salary >
+(select AVG(salary) from emp)
+
+5. find employees earning more then their department average
+
+ select * from emp e2 where salary >
+ ( select AVG(salary) emp e1 where e1.departmentid = e2.departmentid)
+
+6. Find highest salary in each department
+
+  
+select departmentid,emppname,salary from (
+  select departmentid,empname,salary, DENSE_RANK over (
+   partition by departmentid
+   order by salary desc
+   ) as Rankno
+   from employees
+) E where RankNo =1;
+ 
+ partition by -> it creates a separate ranking for each department
+
+7. Find top 3 salaries in each department
+
+
+select departmentid,emppname,salary from (
+  select departmentid,empname,salary, DENSE_RANK over (
+   partition by departmentid
+   order by salary desc
+   ) as Rankno
+   from employees
+) E where RankNo <=3;
+
+8. Find the latest order for each customer
+ 
+select cusId,orderId,orderDate,Amount 
+(
+select cusId,OrderId,amount ROW_NUMBER() over ( 
+partition by cusId
+order by orderOn desc
+) as RowNo
+from orders
+) o 
+where RowNo=1;
+
+9.Find total orders and total amount per customer
+
+  select count(orderid),sum(amount) from Orders group by customerid
+
+10. Find customers with more than 5 orders
+  
+ select custId,count(*) as totalOrders from orders group by custId having count(*)>5
+ 
+ select * from ( 
+ select custId, Row_NUMBER() over ( 
+ partition by custId 
+ order by custId 
+ ) as RowNo
+ from Orders
+ )e where RowNo > 5
+
+11. Find monthly sales -->catch createdon contain years ->2025,2024
+
+  select  Year(createdON),Month(createdOn),SUM(amount) from Order group by Year(createdON), Month(createdOn) order OrderYear,orderMonth;
+
+12. Find the highest-selling moneth
+
+ select TOP 1 Year(createdOn),Month(createdOn), SUM(amount) as totalsales from Order group Year(createdOn),Month(createdOn) order by totalsales
+
+ 13. Find employees and their managers
+
+  table->empid,empname,managerid(empid) -> self join
+
+select e1.empid as empId , e2.managerid as managerId from emp e1 
+left join emp e2 on e1.empid =managerid
+
+ 14 Difference between ROW_NUMBER, RANK and DENSE_RANK
+
+ example
+ 10000
+ 10000
+ 200
+ 300
+ ROW_NUMBER() OVER (ORDER BY Salary DESC) --> Every row gets a unique number.
+  resul:-
+  1000 -1
+  1000 -2
+  200  -3
+  300  -4
+ RANK() ---> There is a gap after duplicates. Ranking with gaps
+  resul:-
+  1000 -1
+  1000 -1
+  200  -3
+  300  -4
+  DENSE_NUMBER() OVER (ORDER BY Salary DESC) --> No gap.Ranking without gaps
+   resul:-
+  1000 -1
+  1000 -1
+  200  -2
+  300  -3
+
+ 15) delete duplicate records (keep one record and delete the remaining duplicates)
+
+ WITH CTE as
+( 
+  select *,Row_NUMBER() OVER
+   ( 
+     PARTITION BY email
+     order by custid
+   ) as RowNo
+   from customers
+)
+
+ delete from CTE where RowNo > 1;
+

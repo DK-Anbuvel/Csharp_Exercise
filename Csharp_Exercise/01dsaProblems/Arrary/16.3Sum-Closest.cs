@@ -34,7 +34,7 @@
                 for (; j < nums.Length; j++)
                 { // [2,-7,11,3]
                     x = target - (nums[j]);
-                    if (c_nums.ContainsKey(x) && c_nums[x] != j) // block same no. used both indece. [2,2], 4  
+                    if (c_nums. && c_nums[x] != j) // block same no. used both indece. [2,2], 4  
                     {
                         break;
                     }
