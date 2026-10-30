@@ -85,7 +85,7 @@ where RowNo=1;
 
   select  Year(createdON),Month(createdOn),SUM(amount) from Order group by Year(createdON), Month(createdOn) order OrderYear,orderMonth;
 
-12. Find the highest-selling moneth
+12. Find the highest-selling month
 
  select TOP 1 Year(createdOn),Month(createdOn), SUM(amount) as totalsales from Order group Year(createdOn),Month(createdOn) order by totalsales
 
@@ -135,4 +135,16 @@ left join emp e2 on e1.empid =managerid
 )
 
  delete from CTE where RowNo > 1;
+
+ 16) Find salary difference from previous employee
+
+ sql server buildin function : LAG() used to access previous row
+
+  select empName,salary, salary -  LAG(salary) OVER (ORDER BY id) ) as PreviousSalary from employee 
+
+ 17) Find salary difference from next employee with Each department
+
+  sql server buildin function : LEAD() used to access next row and PARTITION BY group department
+  
+  select empName, salary, salary - LEAD(salary) OVER (PARTITION BY department ORDER BY salary) as NextSalary from employee
 
